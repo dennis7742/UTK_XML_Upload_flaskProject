@@ -63,9 +63,9 @@ def csv_to_xml(csv_path):
     root = ET.Element('Manifest')
 
     # Iterate over rows of CSV data in groups of eleven (11)
-    for i in range(1, len(data), 12):  # Start from row 1
+    for i in range(1, len(data), 22):  # Start from row 1
         # Placeholder for XML generation based on your script's logic
-        for i in range(1, len(data), 12):  # Start from row 1
+        for i in range(1, len(data), 22):  # Start from row 1
 
             # Create 'submission' element
             submission = ET.SubElement(root, 'submission')
@@ -97,7 +97,7 @@ def csv_to_xml(csv_path):
 
             # Create 'student' elements with their attributes
             # Each 'student' uses data from one of the next NINE rows of the group
-            for j in range(0, 10):
+            for j in range(0, 20):
                 if i + j < len(data):  # Change this line to start from the earlier row
                     student = ET.SubElement(registration, 'student',
                                             {xml_attr: str(data.iloc[i + j, csv_col]) for csv_col, xml_attr in
@@ -107,7 +107,7 @@ def csv_to_xml(csv_path):
             evaluations = ET.SubElement(class_element, 'evaluations')
 
             # Iterate over NINE rows for each group
-            for j in range(0, 10):
+            for j in range(0, 20):
                 if i + j < len(data):  # Change this line to start from the earlier row
                     # Create 'evaldata' element
                     evaldata = ET.SubElement(evaluations, 'evaldata')
