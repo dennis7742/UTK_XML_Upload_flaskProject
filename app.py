@@ -17,6 +17,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def csv_to_xml(csv_path):
     # Load data from CSV file
     data = pd.read_csv(csv_path, header=None)
+    num_rows = len(data)
 
     # Mappings and other variables from the provided script
     trainingprovider_mapping = {
@@ -63,12 +64,12 @@ def csv_to_xml(csv_path):
     root = ET.Element('Manifest')
 
     # ATD - dynamically generate number of lines to insert
-    numLines = len(data)
+    #numLines = len(data)
 
     # Iterate over rows of CSV data in groups of eleven (11)
-    for i in range(1, len(data), numLines + 1):  # Start from row 1
+    for i in range(1, len(data), num_rows + 1):  # Start from row 1
         # Placeholder for XML generation based on your script's logic
-        for i in range(1, len(data), numLines + 1):  # Start from row 1
+        for i in range(1, len(data), num_rows + 1):  # Start from row 1
 
             # Create 'submission' element
             submission = ET.SubElement(root, 'submission')
@@ -100,7 +101,7 @@ def csv_to_xml(csv_path):
 
             # Create 'student' elements with their attributes
             # Each 'student' uses data from one of the next NINE rows of the group
-            for j in range(0, 10):
+            for j in range(0, num_rows):
                 if i + j < len(data):  # Change this line to start from the earlier row
                     student = ET.SubElement(registration, 'student',
                                             {xml_attr: str(data.iloc[i + j, csv_col]) for csv_col, xml_attr in
@@ -110,7 +111,7 @@ def csv_to_xml(csv_path):
             evaluations = ET.SubElement(class_element, 'evaluations')
 
             # Iterate over NINE rows for each group
-            for j in range(0, numLines):
+            for j in range(0, num_rows):
                 if i + j < len(data):  # Change this line to start from the earlier row
                     # Create 'evaldata' element
                     evaldata = ET.SubElement(evaluations, 'evaldata')
