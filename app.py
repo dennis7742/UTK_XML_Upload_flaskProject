@@ -162,18 +162,6 @@ def csv_to_xml(csv_path):
 def index():
     return render_template('upload.html')
 
-
-#def validate_xml_with_dtd(xml_file):
-    # Parse the XML file
-    #parser = etree.XMLParser(dtd_validation=True)
-    #try:
-    #    with open(xml_file, 'r') as file:
-    #        etree.parse(file, parser)
-    #   return True, "The XML file is valid against the DTD."
-    #except etree.XMLSyntaxError as e:
-    #    return False, str(e)
-
-
 @app.route('/upload', methods=['POST'])
 def upload_file_with_validation():
     if 'file' not in request.files:
@@ -199,16 +187,6 @@ def upload_file_with_validation():
     xml_path = os.path.join(app.config['UPLOAD_FOLDER'], xml_filename)
     with open(xml_path, 'w', encoding='utf-8') as xml_file:
         xml_file.write(xml_content)
-
-    # Validate the XML file against the DTD
-    #is_valid, validation_message = validate_xml_with_dtd(xml_path)
-
-    # Provide feedback to the user
-    #if is_valid:
-    #    return f'File uploaded and converted successfully! The XML is valid against the DTD. <a href="/download/{xml_filename}">Download XML</a>'
-    #else:
-    #    return f'File uploaded and converted, but the XML is NOT valid against the DTD. Reason: {validation_message}. <a href="/download/{xml_filename}">Download XML</a>'
-
 
 @app.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
