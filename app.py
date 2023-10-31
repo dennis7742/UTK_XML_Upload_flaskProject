@@ -63,7 +63,7 @@ def csv_to_xml(csv_path):
     # Generate XML from CSV data
     root = ET.Element('Manifest')
 
-    # Iterate over rows of CSV data in groups of eleven (11)
+    # Iterate over num_rows of CSV data in groups
     for i in range(1, len(data), ):  # Start from row 1
         # Placeholder for XML generation based on your script's logic
         for i in range(1, len(data), ):  # Start from row 1
@@ -97,7 +97,7 @@ def csv_to_xml(csv_path):
             registration = ET.SubElement(class_element, 'registration')
 
             # Create 'student' elements with their attributes
-            # Each 'student' uses data from one of the next NINE rows of the group
+            # Each 'student' uses data from one of the next num_rows of the group
             for j in range(0, num_rows):
                 if i + j < len(data):  # Change this line to start from the earlier row
                     student = ET.SubElement(registration, 'student',
@@ -107,7 +107,7 @@ def csv_to_xml(csv_path):
             # Create 'evaluations' element
             evaluations = ET.SubElement(class_element, 'evaluations')
 
-            # Iterate over NINE rows for each group
+            # Iterate over num_rows for each group
             for j in range(0, num_rows):
                 if i + j < len(data):  # Change this line to start from the earlier row
                     # Create 'evaldata' element
@@ -163,15 +163,15 @@ def index():
     return render_template('upload.html')
 
 
-def validate_xml_with_dtd(xml_file):
+#def validate_xml_with_dtd(xml_file):
     # Parse the XML file
-    parser = etree.XMLParser(dtd_validation=True)
-    try:
-        with open(xml_file, 'r') as file:
-            etree.parse(file, parser)
-        return True, "The XML file is valid against the DTD."
-    except etree.XMLSyntaxError as e:
-        return False, str(e)
+    #parser = etree.XMLParser(dtd_validation=True)
+    #try:
+    #    with open(xml_file, 'r') as file:
+    #        etree.parse(file, parser)
+    #   return True, "The XML file is valid against the DTD."
+    #except etree.XMLSyntaxError as e:
+    #    return False, str(e)
 
 
 @app.route('/upload', methods=['POST'])
