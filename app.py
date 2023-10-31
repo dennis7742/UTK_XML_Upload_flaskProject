@@ -64,9 +64,9 @@ def csv_to_xml(csv_path):
     root = ET.Element('Manifest')
 
     # Iterate over rows of CSV data in groups of eleven (11)
-    for i in range(1, len(data), 11):  # Start from row 1
+    for i in range(1, len(data), ):  # Start from row 1
         # Placeholder for XML generation based on your script's logic
-        for i in range(1, len(data), 11):  # Start from row 1
+        for i in range(1, len(data), ):  # Start from row 1
 
             # Create 'submission' element
             submission = ET.SubElement(root, 'submission')
@@ -201,13 +201,13 @@ def upload_file_with_validation():
         xml_file.write(xml_content)
 
     # Validate the XML file against the DTD
-    is_valid, validation_message = validate_xml_with_dtd(xml_path)
+    #is_valid, validation_message = validate_xml_with_dtd(xml_path)
 
     # Provide feedback to the user
-    if is_valid:
-        return f'File uploaded and converted successfully! The XML is valid against the DTD. <a href="/download/{xml_filename}">Download XML</a>'
-    else:
-        return f'File uploaded and converted, but the XML is NOT valid against the DTD. Reason: {validation_message}. <a href="/download/{xml_filename}">Download XML</a>'
+    #if is_valid:
+    #    return f'File uploaded and converted successfully! The XML is valid against the DTD. <a href="/download/{xml_filename}">Download XML</a>'
+    #else:
+    #    return f'File uploaded and converted, but the XML is NOT valid against the DTD. Reason: {validation_message}. <a href="/download/{xml_filename}">Download XML</a>'
 
 
 @app.route('/download/<filename>', methods=['GET'])
