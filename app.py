@@ -64,9 +64,9 @@ def csv_to_xml(csv_path):
     root = ET.Element('Manifest')
 
     # Iterate over rows of CSV data
-    for i in range(1, num_rows + 1):  # Start from row 1
+    for i in range(1, num_rows):  # Start from row 1
         # Placeholder for XML generation based on your script's logic
-        for i in range(1, num_rows + 1):  # Start from row 1
+        for i in range(1, num_rows):  # Start from row 1
 
             # Create 'submission' element
             submission = ET.SubElement(root, 'submission')
