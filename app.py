@@ -1,4 +1,4 @@
-from xml import etree
+from lxml import etree
 
 from flask import Flask, render_template, request, send_from_directory
 import os
