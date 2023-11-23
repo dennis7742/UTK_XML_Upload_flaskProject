@@ -158,9 +158,9 @@ def csv_to_xml(csv_path):
     return pretty_xml
 
 
-@app.route('/')
-def index():
-    return render_template('upload.html')
+# @app.route('/')
+# def index():
+    # return render_template('upload.html')
 
 
 # def validate_xml_with_dtd(xml_file):
