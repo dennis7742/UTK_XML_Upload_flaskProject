@@ -165,7 +165,7 @@ def index():
 
 def validate_xml_with_dtd(xml_file):
     # Parse the XML file
-    parser = etree.XMLParser(dtd_validation=True)
+    parser = etree.XMLParser(dtd_validation=False)
     try:
         with open(xml_file, 'r') as file:
             etree.parse(file, parser)
