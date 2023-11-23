@@ -97,7 +97,7 @@ def csv_to_xml(csv_path):
             registration = ET.SubElement(class_element, 'registration')
 
             # Create 'student' elements with their attributes
-            # Each 'student' uses data from one of the next rows of the group
+            # Each 'student' uses data from one of the next NINE rows of the group
             for j in range(0, num_rows):
                 if i + j < num_rows:  # Change this line to start from the earlier row
                     student = ET.SubElement(registration, 'student',
@@ -157,6 +157,7 @@ def csv_to_xml(csv_path):
     # Return the pretty XML string
     return pretty_xml
 
+
 @app.route('/')
 def index():
     return render_template('upload.html')
@@ -200,13 +201,13 @@ def upload_file_with_validation():
         xml_file.write(xml_content)
 
     # Validate the XML file against the DTD
-    # is_valid, validation_message = validate_xml_with_dtd(xml_path)
+    is_valid, validation_message = validate_xml_with_dtd(xml_path)
 
     # Provide feedback to the user
-    # if is_valid:
-        # return f'File uploaded and converted successfully! The XML is valid against the DTD. <a href="/download/{xml_filename}">Download XML</a>'
-    # else:
-        # return f'File uploaded and converted, but the XML is NOT valid against the DTD. Reason: {validation_message}. <a href="/download/{xml_filename}">Download XML</a>'
+    if is_valid:
+        return f'File uploaded and converted successfully! The XML is valid against the DTD. <a href="/download/{xml_filename}">Download XML</a>'
+    else:
+        return f'File uploaded and converted, but the XML is NOT valid against the DTD. Reason: {validation_message}. <a href="/download/{xml_filename}">Download XML</a>'
 
 
 @app.route('/download/<filename>', methods=['GET'])
