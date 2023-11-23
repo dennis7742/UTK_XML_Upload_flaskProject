@@ -157,8 +157,7 @@ def csv_to_xml(csv_path):
     # Return the pretty XML string
     return pretty_xml
 
-
-# @app.route('/')
+@app.route('/')
 # def index():
     # return render_template('upload.html')
 
