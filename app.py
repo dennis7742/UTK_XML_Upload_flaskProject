@@ -163,15 +163,15 @@ def index():
     return render_template('upload.html')
 
 
-def validate_xml_with_dtd(xml_file):
+# def validate_xml_with_dtd(xml_file):
     # Parse the XML file
-    parser = etree.XMLParser(dtd_validation=False)
-    try:
-        with open(xml_file, 'r') as file:
-            etree.parse(file, parser)
-        return True, "The XML file is valid against the DTD."
-    except etree.XMLSyntaxError as e:
-        return False, str(e)
+    # parser = etree.XMLParser(dtd_validation=True)
+    # try:
+        # with open(xml_file, 'r') as file:
+            # etree.parse(file, parser)
+        # return True, "The XML file is valid against the DTD."
+    # except etree.XMLSyntaxError as e:
+        # return False, str(e)
 
 
 @app.route('/upload', methods=['POST'])
