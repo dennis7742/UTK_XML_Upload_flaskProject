@@ -97,7 +97,7 @@ def csv_to_xml(csv_path):
             registration = ET.SubElement(class_element, 'registration')
 
             # Create 'student' elements with their attributes
-            # Each 'student' uses data from one of the next NINE rows of the group
+            # Each 'student' uses data from one of the next rows of the group
             for j in range(0, num_rows):
                 if i + j < num_rows:  # Change this line to start from the earlier row
                     student = ET.SubElement(registration, 'student',
